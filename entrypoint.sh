@@ -7,6 +7,7 @@ GITHUB_REPO="$3"
 USER_EMAIL="$4"
 REPO_USERNAME="$5"
 TARGET_BRANCH="$6"
+CLEAN_DESTINATION="$7"
 
 if [ -z "$REPO_USERNAME" ]
 then
@@ -19,12 +20,15 @@ fi
 
 CLONE_DIR=$(mktemp -d)
 
-echo "Cloning destination git repository"
-# Setup git
-git config --global user.email "$USER_EMAIL"
-git config --global user.name "$GITHUB_USERNAME"
-git clone --single-branch --branch "$TARGET_BRANCH" "https://$API_TOKEN_GITHUB@github.com/$REPO_USERNAME/$GITHUB_REPO.git" "$CLONE_DIR"
-ls -la "$CLONE_DIR"
+if [[ ! -z "$CLEAN_DESTINATION" ]]
+then
+  echo "Cloning destination git repository"
+  # Setup git
+  git config --global user.email "$USER_EMAIL"
+  git config --global user.name "$GITHUB_USERNAME"
+  git clone --single-branch --branch "$TARGET_BRANCH" "https://$API_TOKEN_GITHUB@github.com/$REPO_USERNAME/$GITHUB_REPO.git" "$CLONE_DIR"
+  ls -la "$CLONE_DIR"
+fi
 
 echo "Cleaning destination repository of old files"
 # Copy files into the git and deletes all git
