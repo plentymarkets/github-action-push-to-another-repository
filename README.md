@@ -1,4 +1,8 @@
-# github-action-push-to-another-repository
+
+# Fork for cpina/github-action-push-to-another-repository
+
+The main difference is that it can take an extra param to decide if cleaning (deleting everything else) in the destination repo is desired or not
+
 
 Used to push generated files from a directory from Git Action step into another repository on Github.
 
