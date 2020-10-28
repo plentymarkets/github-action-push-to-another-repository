@@ -19,6 +19,9 @@ inputs:
   target-branch:
     description: '[Optional] set target branch name for the destination repository'
     required: false
+  clean-destination:
+    description: '[Optional] set this param to any value if you need to delete everything else in the destination repository'
+    required: false
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -29,6 +32,7 @@ runs:
     - ${{ inputs.user-email }}
     - ${{ inputs.destination-repository-username }}
     - ${{ inputs.target-branch }}
+    - ${{ inputs.clean-destination }}
 branding:
   icon: 'git-commit'
   color: 'green'
